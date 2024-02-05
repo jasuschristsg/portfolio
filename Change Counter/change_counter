@@ -1,0 +1,26 @@
+#return the amount of notes and coins needed to give change
+def num_notes_coins(c, sn, sc):
+    t_notes = 0
+    t_coins = 0
+
+    for denomination in sn + sc:
+        if c >= denomination:
+            if denomination in sn:
+                t_notes += 1
+            else:
+                t_coins += 1
+            c -= denomination
+
+    return t_notes, t_coins
+
+change = float(input('Change: $'))
+
+sgd_coins = [.1, .2, .5, 1]
+sgd_notes = [2, 5, 10, 50, 100, 1000]
+
+try:
+    t_notes, t_coins = num_notes_coins(change, sgd_notes, sgd_coins)
+    print('You will get minimally %i note and %i coins.' %(t_notes, t_coins))
+
+except:
+    print('Error')
